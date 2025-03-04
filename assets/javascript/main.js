@@ -19,17 +19,22 @@ function createGrid(size) {
 }
 
 function gridDom(grid) {
-    gameGrid.innerHTML = '';
+    gameGrid.innerHTML = ''
     grid.forEach((row, i) => {
         row.forEach((cell, j) => {
-            const cellContainer = document.createElement('div');
-            cellContainer.classList.add('cell');
+            const cellContainer = document.createElement('div')
+            cellContainer.classList.add('cell')
             if (cell === 1) {
-                cellContainer.classList.add('alive');
+                cellContainer.classList.add('alive')
             }
-            gameGrid.appendChild(cellContainer);
-        });
-    });
+            cellContainer.addEventListener('click', () => {
+                grid[i][j] = grid[i][j] === 1 ? 0 : 1
+                // MAJ l'apparence de la cell // merci au cousin! //
+                cellContainer.classList.toggle('alive')
+            })
+            gameGrid.appendChild(cellContainer)
+        })
+    })
 }
 
 function updateGrid(grid) {
